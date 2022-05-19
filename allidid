@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+TOTAL="0.0"
+
+echo
+echo "Adding total time from these lines:"
+echo 
+
+while IFS= read -r line; do
+	LINE_HRS=$(echo "${line}" | cut -d "|" -f 2 | sed 's/\s//g')
+	TOTAL=$(echo "${TOTAL} + ${LINE_HRS}" | bc -l)
+	echo $line
+done
+
+echo
+echo "------------------"
+echo "Total Hours: ${TOTAL}"
+echo

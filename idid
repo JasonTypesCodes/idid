@@ -1,0 +1,41 @@
+#!/bin/zsh
+
+DATE_FMT="%F %H:%M:%S (%a)"
+
+function format_time {
+	echo $(printf "%.02f" $(echo $1 | sed 's/[^0-9\.0-9]*//g'))
+}
+
+if [ -z "$I_DID_LOG" ]; then
+	echo "Please set the '\$I_DID_LOG' environment variable to point to the location of your log file"
+	exit 1
+else
+	if [ "$#" -eq 0 ]; then
+		echo "USAGE: idid [time (defaults to hours)][m] [message]"
+		echo "--"
+		echo "EXAMPLE: idid 3 \"something that took 3 hours\""
+		echo "EXAMPLE: idid 24m \"something that took 24 minutes\""
+		echo "EXAMPLE: idid 1.5h \"something that took one and a half hours\""
+		echo "EXAMPLE: idid \"something that I didn't track the time of\""
+		exit 1
+	else
+		RAW_TIME="$1"
+		COMMENT="$2"
+
+		if [ "$#" -eq 1 ]; then
+			RAW_TIME="0"
+			COMMENT="$1"
+		fi
+
+		DT=$(date "+${DATE_FMT}")
+		TIME_IN_HRS=$(format_time $RAW_TIME)
+
+		if [[ $RAW_TIME == *"m"* ]]; then
+			TIME_IN_HRS=$(format_time $(echo "scale=2; ${TIME_IN_HRS} / 60" | bc -l))
+		fi
+
+		LOG_LINE="${DT} | ${TIME_IN_HRS} | ${COMMENT}"
+		echo "$LOG_LINE" >> $I_DID_LOG
+		echo $LOG_LINE
+	fi
+fi

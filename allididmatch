@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+cat $I_DID_LOG | grep "${1}" | allidid

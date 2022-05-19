@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+TODAY=`date "+%F"`
+
+allididon "${TODAY}"
