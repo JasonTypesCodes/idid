@@ -1,0 +1,109 @@
+= idid
+
+A partially-featured shell script that maintains a log of things that I did.
+
+It is written for `zsh` but it might work with other shells.  If it doesn't, it shouldn't be far off.
+
+== Usage
+
+1. Set an environment variable called `I_DID_LOG` that is set to the location of your log:
+
+  For example, in your `.zshrc` :
+
+  ```
+  export I_DID_LOG=/home/me/path/to/things.i.did.log
+  ```
+
+2. Add `idid` to your path
+
+3. Add things to the log
+
+  ```
+  $ idid 1 "An example of something that took an hour"
+
+  2022-05-19 09:26:42 (Thu) | 1.00 | An example of something that took an hour
+  ```
+
+  The first argument is the amount of time (defaults to hours).  To enter time in minutes, add an 'm' to the time:
+
+  ```
+  $ idid 10m "Something quick"
+
+  2022-05-19 09:32:22 (Thu) | 0.16 | Something quick
+  ```
+
+  If you omit the time, it will default to 0:
+
+  ```
+  $ idid "This is just a note"
+
+  2022-05-19 09:33:56 (Thu) | 0.00 | This is just a note
+  ```
+
+  To see some usage hints, run `idid` with no arguments
+
+  ```
+  idid
+  USAGE: idid [time (defaults to hours)][m] [message]
+  --
+  EXAMPLE: idid 3 "something that took 3 hours"
+  EXAMPLE: idid 24m "something that took 24 minutes"
+  EXAMPLE: idid 1.5h "something that took one and a half hours"
+  EXAMPLE: idid "something that I didn't track the time of"
+  ```
+
+== Utility Scripts
+
+=== allidid
+
+The `allidid` script will display and total the time for entries sent to it.  Useful for grepping through the log.
+
+```
+$ cat things.i.did.log | grep "omething" | allidid
+
+  Adding total time from these lines:
+
+  2022-05-19 09:26:42 (Thu) | 1.00 | An example of something that took an hour
+  2022-05-19 09:32:22 (Thu) | 0.16 | Something quick
+
+  ------------------
+  Total Hours: 1.16
+```
+
+=== `allididtoday`
+
+Shows a summary of everything logged today
+
+=== `allididmatch`
+
+A shortcut for grepping the log:
+
+```
+$ allididmatch "omething"
+
+  Adding total time from these lines:
+
+  2022-05-19 09:26:42 (Thu) | 1.00 | An example of something that took an hour
+  2022-05-19 09:32:22 (Thu) | 0.16 | Something quick
+
+  ------------------
+  Total Hours: 1.16
+```
+
+=== `allididon`
+
+Prints log lines from a particular date
+
+```
+$ allididon 2022-05-19
+
+Adding total time from these lines:
+
+2022-05-19 09:26:42 (Thu) | 1.00 | An example of something that took an hour
+2022-05-19 09:32:22 (Thu) | 0.16 | Something quick
+2022-05-19 09:33:56 (Thu) | 0.00 | This is just a note
+
+------------------
+Total Hours: 1.16
+
+```
