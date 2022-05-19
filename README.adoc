@@ -2,8 +2,6 @@
 
 A partially-featured shell script that maintains a log of things that I did.
 
-It is written for `zsh` but it might work with other shells.  If it doesn't, it shouldn't be far off.
-
 == Usage
 
 1 - Set an environment variable called `I_DID_LOG` that is set to the location of your log:

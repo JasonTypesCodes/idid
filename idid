@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 DATE_FMT="%F %H:%M:%S (%a)"
 
