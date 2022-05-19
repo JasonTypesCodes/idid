@@ -6,51 +6,51 @@ It is written for `zsh` but it might work with other shells.  If it doesn't, it 
 
 == Usage
 
-1. Set an environment variable called `I_DID_LOG` that is set to the location of your log:
+1 - Set an environment variable called `I_DID_LOG` that is set to the location of your log:
 
-  For example, in your `.zshrc` :
+For example, in your `.zshrc` :
 
-  ```
-  export I_DID_LOG=/home/me/path/to/things.i.did.log
-  ```
+```
+export I_DID_LOG=/home/me/path/to/things.i.did.log
+```
 
-2. Add `idid` to your path
+2 - Add `idid` to your path
 
-3. Add things to the log
+3 - Add things to the log
 
-  ```
-  $ idid 1 "An example of something that took an hour"
+```
+$ idid 1 "An example of something that took an hour"
 
-  2022-05-19 09:26:42 (Thu) | 1.00 | An example of something that took an hour
-  ```
+2022-05-19 09:26:42 (Thu) | 1.00 | An example of something that took an hour
+```
 
-  The first argument is the amount of time (defaults to hours).  To enter time in minutes, add an 'm' to the time:
+The first argument is the amount of time (defaults to hours).  To enter time in minutes, add an 'm' to the time:
 
-  ```
-  $ idid 10m "Something quick"
+```
+$ idid 10m "Something quick"
 
-  2022-05-19 09:32:22 (Thu) | 0.16 | Something quick
-  ```
+2022-05-19 09:32:22 (Thu) | 0.16 | Something quick
+```
 
-  If you omit the time, it will default to 0:
+If you omit the time, it will default to 0:
 
-  ```
-  $ idid "This is just a note"
+```
+$ idid "This is just a note"
 
-  2022-05-19 09:33:56 (Thu) | 0.00 | This is just a note
-  ```
+2022-05-19 09:33:56 (Thu) | 0.00 | This is just a note
+```
 
-  To see some usage hints, run `idid` with no arguments
+To see some usage hints, run `idid` with no arguments
 
-  ```
-  idid
-  USAGE: idid [time (defaults to hours)][m] [message]
-  --
-  EXAMPLE: idid 3 "something that took 3 hours"
-  EXAMPLE: idid 24m "something that took 24 minutes"
-  EXAMPLE: idid 1.5h "something that took one and a half hours"
-  EXAMPLE: idid "something that I didn't track the time of"
-  ```
+```
+idid
+USAGE: idid [time (defaults to hours)][m] [message]
+--
+EXAMPLE: idid 3 "something that took 3 hours"
+EXAMPLE: idid 24m "something that took 24 minutes"
+EXAMPLE: idid 1.5h "something that took one and a half hours"
+EXAMPLE: idid "something that I didn't track the time of"
+```
 
 == Utility Scripts
 
