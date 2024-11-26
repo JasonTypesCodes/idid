@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 DATE_FMT="%F %H:%M:%S (%a)"
 
